@@ -3,7 +3,7 @@ import sequelize from "../config/database"; // Connexion à la base de données
 import { Book } from "./book.model";
 
 export interface AuthorAttributes {
-  id: number;
+  id?: number;
   first_name: string;
   last_name: string;
 }
@@ -12,7 +12,7 @@ export class Author
   extends Model<AuthorAttributes>
   implements AuthorAttributes
 {
-  public id!: number;
+  public id?: number;
   public first_name!: string;
   public last_name!: string;
 }
