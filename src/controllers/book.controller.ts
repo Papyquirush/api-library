@@ -22,6 +22,13 @@ export class BookController extends Controller {
     return book;
   }
 
+  @Post("/")
+  public async createBook(
+    @Body() requestBody: BookDTO
+  ): Promise<BookDTO> {
+    const { title, publish_year, author, isbn } = requestBody;
+    return bookService.createBook(title,publish_year , isbn, author?.id);
+  }
   
   
 }
