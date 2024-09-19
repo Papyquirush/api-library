@@ -30,6 +30,22 @@ export class BookController extends Controller {
     return bookService.createBook(title,publish_year , isbn, author?.id);
   }
   
+
+  @Patch("{id}")
+  public async updateBook(
+    @Path() id: number,
+    @Body() requestBody: BookDTO
+  ): Promise<BookDTO | null> {
+    const book = await bookService.getBookById(id);
+
+    if(!book){
+      const error = new Error('Book not found');
+      (error as any).status = 404;
+      throw error;
+    }
+    const { title, publish_year, author, isbn } = requestBody;
+    return bookService.updateBook(id, title, publish_year, isbn, author?.id);
+  }
   
 }
 

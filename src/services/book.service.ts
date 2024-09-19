@@ -38,6 +38,29 @@ export class BookService {
   }
 
 
+  public async updateBook(
+    id: number,
+    title?: string,
+    publish_year?: number,
+    isbn?: string,
+    author_id?: number
+  ): Promise<Book | null> {
+    const book = await Book.findByPk(id);
+    if (book) {
+      if (title) book.title = title;
+      if (publish_year) book.publish_year = publish_year;
+      if (isbn) book.isbn = isbn;
+      if (author_id) book.author_id = author_id;
+      await book.save();
+      return book;
+    }
+    return null;
+  }
+
 }
+
+
+
+
 
 export const bookService = new BookService();
