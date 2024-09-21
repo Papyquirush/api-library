@@ -1,4 +1,3 @@
-import { AuthorDTO } from "../dto/author.dto";
 import { Author } from "../models/author.model";
 import { Book } from "../models/book.model";
 
