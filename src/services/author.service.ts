@@ -32,11 +32,11 @@ export class AuthorService {
       }
     });
 
-    if(books.length = 0){
+    if(books.length == 0){
       const author = await Author.findByPk(id);
-    if (author) {
-      await author.destroy();
-    }
+      if (author) {
+        await author.destroy();
+      }
     }else {
       const error = new Error('Author has books');
       (error as any).status = 400;

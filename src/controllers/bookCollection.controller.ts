@@ -39,4 +39,7 @@ export class BookCollectionController extends Controller {
     return bookCollectionService.updateBookCollection(id, book_id, available, state);
   }
 
+
+  
+
 }

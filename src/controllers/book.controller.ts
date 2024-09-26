@@ -46,6 +46,20 @@ export class BookController extends Controller {
     const { title, publish_year, author, isbn } = requestBody;
     return bookService.updateBook(id, title, publish_year, isbn, author?.id);
   }
+
+
+  @Delete("{id}")
+  public async deleteBook(@Path() id: number): Promise<void> {
+    const book = await bookService.getBookById(id);
+
+    if(!book){
+      const error = new Error('Book not found');
+      (error as any).status = 404;
+      throw error;
+    }
+    await bookService.deleteBook(id);
+  }
+
   
 }
 

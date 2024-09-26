@@ -1,5 +1,6 @@
 import { Author } from "../models/author.model";
 import { Book } from "../models/book.model";
+import { BookCollection } from "../models/bookCollection.model";
 
 export class BookService {
   public async getAllBooks(): Promise<Book[]> {
@@ -55,6 +56,33 @@ export class BookService {
     }
     return null;
   }
+
+  public async deleteBook(id: number): Promise<void> {
+
+
+    //On récupère tous les livres de la bibliothèque
+    const books = await BookCollection.findAll({
+      where: {
+        book_id: id
+      }
+    });
+
+
+    if(books.length == 0){
+      const book = await Book.findByPk(id);
+      if (book) {
+        await book.destroy();
+      }
+    }else {
+      const error = new Error('BookCollection has book');
+      (error as any).status = 400;
+      throw error;
+    }
+
+    
+  }
+
+
 
 }
 
