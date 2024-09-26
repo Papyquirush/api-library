@@ -83,6 +83,15 @@ export class BookService {
   }
 
 
+  public async getBookCollectionsByBook(id: number): Promise<BookCollection[]> {
+    return BookCollection.findAll({
+      where: {
+        book_id: id
+      }
+    });
+  }
+
+
 
 }
 

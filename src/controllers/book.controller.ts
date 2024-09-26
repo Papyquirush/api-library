@@ -1,6 +1,7 @@
 import { Controller, Get, Post, Delete, Route, Path, Body, Tags, Patch } from "tsoa";
 import { BookDTO } from "../dto/book.dto";
 import { bookService } from "../services/book.service";
+import { BookCollectionDTO } from "../dto/bookCollection.dto";
 
 @Route("books")
 @Tags("Books")
@@ -60,6 +61,18 @@ export class BookController extends Controller {
     await bookService.deleteBook(id);
   }
 
+  @Get('{id}/book-collections')
+  public async getBookCollectionsByBookId(@Path() id: number): Promise<BookCollectionDTO[]> {
+    const book = await bookService.getBookCollectionsByBook(id);
+
+    if (!book) {
+      const error = new Error('Book not found');
+      (error as any).status = 404;
+      throw error;
+    }
+
+    return book;
+  }
   
 }
 

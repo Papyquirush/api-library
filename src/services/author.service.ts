@@ -62,6 +62,20 @@ export class AuthorService {
     }
     return null;
   }
+
+
+
+  public async getBooksByAuthor(id: number): Promise<Book[]> {
+    return  Book.findAll({
+      where: {
+        author_id: id
+      }
+    });
+  }
+
+
+
+
 }
 
 export const authorService = new AuthorService();

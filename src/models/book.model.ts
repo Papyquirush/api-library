@@ -1,5 +1,5 @@
 import { Model, DataTypes } from "sequelize";
-import sequelize from "../config/database"; // Connection à la base de données
+import sequelize from "../config/database"; 
 import { Author } from "./author.model";
 
 export interface BookAttributes {
