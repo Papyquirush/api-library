@@ -35,6 +35,24 @@ export class BookCollectionService {
     return BookCollection.create({ book_id, available, state });
   }
 
+
+  public async updateBookCollection(
+    id: number,
+    book_id?: number,
+    available?: number,
+    state?: number
+  ): Promise<BookCollection | null> {
+    const bookCollection = await BookCollection.findByPk(id);
+    if (bookCollection) {
+      if (book_id) bookCollection.book_id = book_id;
+      if (available) bookCollection.available = available;
+      if (state) bookCollection.state = state;
+      await bookCollection.save();
+      return bookCollection;
+    }
+    return null;
+  }
+
 }
 
 export const bookCollectionService = new BookCollectionService();

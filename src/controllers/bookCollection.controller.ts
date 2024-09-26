@@ -23,5 +23,20 @@ export class BookCollectionController extends Controller {
     return bookCollectionService.createBookCollection( book_id, available, state);
   }
 
+  @Patch("/:id")
+  public async updateBookCollection(
+    @Path() id: number,
+    @Body() requestBody: BookCollectionDTO
+  ): Promise<BookCollectionDTO | null> {
+    const bookCollection = await bookCollectionService.getBookCollection(id);
+
+    if(!bookCollection){
+      const error = new Error('BookCollection not found');
+      (error as any).status = 404;
+      throw error;
+    }
+    const { book_id, available, state } = requestBody;
+    return bookCollectionService.updateBookCollection(id, book_id, available, state);
+  }
 
 }
