@@ -1,4 +1,6 @@
 import { Author } from "../models/author.model";
+import { Book } from '../models/book.model';
+
 
 export class AuthorService {
   // Récupère tous les auteurs
@@ -21,10 +23,28 @@ export class AuthorService {
 
   // Supprime un auteur par ID
   public async deleteAuthor(id: number): Promise<void> {
-    const author = await Author.findByPk(id);
+
+
+    // On récupère tous les livres de l'auteur
+    const books = await Book.findAll({
+      where: {
+        author_id: id
+      }
+    });
+
+    if(books.length = 0){
+      const author = await Author.findByPk(id);
     if (author) {
       await author.destroy();
     }
+    }else {
+      const error = new Error('Author has books');
+      (error as any).status = 400;
+      throw error;
+    }
+
+
+    
   }
 
   // Met à jour un auteur
