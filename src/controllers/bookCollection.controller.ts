@@ -12,5 +12,16 @@ export class BookCollectionController extends Controller {
   }
 
 
+  @Get("/:id")
+  public async getBookCollection(id: number): Promise<BookCollectionDTO | null> {
+    return bookCollectionService.getBookCollection(id);
+  }
+
+  @Post("/")
+  public async createBookCollection(@Body() requestBody: BookCollectionDTO): Promise<BookCollectionDTO> {
+    const { book_id, available, state } = requestBody;
+    return bookCollectionService.createBookCollection( book_id, available, state);
+  }
+
 
 }

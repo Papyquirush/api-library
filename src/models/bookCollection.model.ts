@@ -5,9 +5,9 @@ import { Book } from "./book.model";
 export interface BookCollectionAttributes {
   id?: number;
   book_id: number;
-  available: boolean;
+  available: number;
   state : number;
- 
+  book? : Book;
 }
 
 export class BookCollection
@@ -16,9 +16,10 @@ export class BookCollection
 {
   public id?: number;
   public book_id!: number;
-  public available!: boolean;
+ 
+  public available!: number;
   public state!: number;
-  
+  public book? : Book;
 }
 
 BookCollection.init(
@@ -33,7 +34,7 @@ BookCollection.init(
       allowNull: false,
     },
     available: {
-      type: DataTypes.BOOLEAN,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     state: {
@@ -48,4 +49,4 @@ BookCollection.init(
   }
 );
 
-BookCollection.belongsTo(Book, { foreignKey: "id", as: "book_id" });
+BookCollection.belongsTo(Book, { foreignKey: "book_id", as: "book" });
