@@ -40,6 +40,19 @@ export class BookCollectionController extends Controller {
   }
 
 
+  @Delete("/:id")
+  public async deleteBookCollection(id: number): Promise<void> {
+    const bookCollection = await bookCollectionService.getBookCollection(id);
+
+    if(!bookCollection){
+      const error = new Error('BookCollection not found');
+      (error as any).status = 404;
+      throw error;
+    }
+
+    await bookCollectionService.deleteBookCollection(id);
+  }
+
   
 
 }

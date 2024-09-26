@@ -54,6 +54,12 @@ export class BookCollectionService {
   }
 
 
+  public async deleteBookCollection(id: number): Promise<void> {
+    const bookCollection = await BookCollection.findByPk(id);
+    if (bookCollection) {
+      await bookCollection.destroy();
+    }
+  }
   
 }
 
