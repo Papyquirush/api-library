@@ -1,9 +1,10 @@
-import { Controller, Get, Post, Delete, Route, Path, Body, Tags, Patch } from "tsoa";
+import { Controller, Get, Post, Delete, Route, Path, Body, Tags, Patch , Security} from "tsoa";
 import { BookCollectionDTO } from "../dto/bookCollection.dto";
 import { bookCollectionService } from "../services/bookCollection.service";
 
 @Route("bookCollections")
 @Tags("BookCollections")
+@Security("jwt")
 export class BookCollectionController extends Controller {
 
   @Get("/")

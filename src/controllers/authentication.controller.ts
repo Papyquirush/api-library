@@ -1,4 +1,4 @@
-import { Route, Controller, Post, Body } from "tsoa";
+import { Route, Controller, Post, Body} from "tsoa";
 import { AuthenticationInputDTO } from "../dto/authentication.dto";
 import { authService } from "../services/authentication.service";
 
