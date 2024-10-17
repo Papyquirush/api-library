@@ -7,7 +7,6 @@ import { BookDTO } from "../dto/book.dto";
 
 @Route("authors")
 @Tags("Authors")
-@Security("jwt")
 export class AuthorController extends Controller {
   // Récupère tous les auteurs
   @Get("/")

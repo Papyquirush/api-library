@@ -25,9 +25,20 @@ export class AuthenticationService {
     // Vérifie si le mot de passe est correct
     if (password === decodedPassword) {
       // Si l'utilisateur est authentifié, on génère un JWT
-      const token = jwt.sign({ username: user.username }, JWT_SECRET, {
-        expiresIn: "1h",
-      });
+      const token = jwt.sign(
+        {
+          username: user.username,
+          role: user.username,
+          permissions: AuthenticationService.getPermissions(user.username as 'admin' | 'gerant' | 'utilisateur'),
+        },
+        JWT_SECRET,
+        { expiresIn: '24h' }
+      );
+
+
+
+
+
       return token;
     } else {
       let error = new Error("Wrong password");
@@ -35,6 +46,20 @@ export class AuthenticationService {
       throw error;
     }
   }
+
+  private static getPermissions(role: 'admin' | 'gerant' | 'utilisateur') {
+    switch (role) {
+      case 'admin':
+        return ['read', 'write', 'delete'];
+      case 'gerant':
+        return ['read', 'write', 'delete_bookCollection'];
+      case 'utilisateur':
+        return ['read', 'write_book'];
+      default:
+        return [];
+    }
+  }
+
 }
 
 export const authService = new AuthenticationService();

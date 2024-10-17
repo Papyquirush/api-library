@@ -4,7 +4,6 @@ import { bookCollectionService } from "../services/bookCollection.service";
 
 @Route("bookCollections")
 @Tags("BookCollections")
-@Security("jwt")
 export class BookCollectionController extends Controller {
 
   @Get("/")

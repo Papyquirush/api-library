@@ -363,11 +363,7 @@
 				"tags": [
 					"BookCollections"
 				],
-				"security": [
-					{
-						"jwt": []
-					}
-				],
+				"security": [],
 				"parameters": []
 			},
 			"post": {
@@ -387,11 +383,7 @@
 				"tags": [
 					"BookCollections"
 				],
-				"security": [
-					{
-						"jwt": []
-					}
-				],
+				"security": [],
 				"parameters": [],
 				"requestBody": {
 					"required": true,
@@ -428,11 +420,7 @@
 				"tags": [
 					"BookCollections"
 				],
-				"security": [
-					{
-						"jwt": []
-					}
-				],
+				"security": [],
 				"parameters": [
 					{
 						"in": "path",
@@ -467,11 +455,7 @@
 				"tags": [
 					"BookCollections"
 				],
-				"security": [
-					{
-						"jwt": []
-					}
-				],
+				"security": [],
 				"parameters": [
 					{
 						"in": "path",
@@ -504,11 +488,7 @@
 				"tags": [
 					"BookCollections"
 				],
-				"security": [
-					{
-						"jwt": []
-					}
-				],
+				"security": [],
 				"parameters": [
 					{
 						"in": "path",
@@ -543,11 +523,7 @@
 				"tags": [
 					"Books"
 				],
-				"security": [
-					{
-						"jwt": []
-					}
-				],
+				"security": [],
 				"parameters": []
 			},
 			"post": {
@@ -567,11 +543,7 @@
 				"tags": [
 					"Books"
 				],
-				"security": [
-					{
-						"jwt": []
-					}
-				],
+				"security": [],
 				"parameters": [],
 				"requestBody": {
 					"required": true,
@@ -608,11 +580,7 @@
 				"tags": [
 					"Books"
 				],
-				"security": [
-					{
-						"jwt": []
-					}
-				],
+				"security": [],
 				"parameters": [
 					{
 						"in": "path",
@@ -647,11 +615,7 @@
 				"tags": [
 					"Books"
 				],
-				"security": [
-					{
-						"jwt": []
-					}
-				],
+				"security": [],
 				"parameters": [
 					{
 						"in": "path",
@@ -684,11 +648,7 @@
 				"tags": [
 					"Books"
 				],
-				"security": [
-					{
-						"jwt": []
-					}
-				],
+				"security": [],
 				"parameters": [
 					{
 						"in": "path",
@@ -723,11 +683,7 @@
 				"tags": [
 					"Books"
 				],
-				"security": [
-					{
-						"jwt": []
-					}
-				],
+				"security": [],
 				"parameters": [
 					{
 						"in": "path",
@@ -762,11 +718,7 @@
 				"tags": [
 					"Authors"
 				],
-				"security": [
-					{
-						"jwt": []
-					}
-				],
+				"security": [],
 				"parameters": []
 			},
 			"post": {
@@ -786,11 +738,7 @@
 				"tags": [
 					"Authors"
 				],
-				"security": [
-					{
-						"jwt": []
-					}
-				],
+				"security": [],
 				"parameters": [],
 				"requestBody": {
 					"required": true,
@@ -827,11 +775,7 @@
 				"tags": [
 					"Authors"
 				],
-				"security": [
-					{
-						"jwt": []
-					}
-				],
+				"security": [],
 				"parameters": [
 					{
 						"in": "path",
@@ -854,11 +798,7 @@
 				"tags": [
 					"Authors"
 				],
-				"security": [
-					{
-						"jwt": []
-					}
-				],
+				"security": [],
 				"parameters": [
 					{
 						"in": "path",
@@ -893,11 +833,7 @@
 				"tags": [
 					"Authors"
 				],
-				"security": [
-					{
-						"jwt": []
-					}
-				],
+				"security": [],
 				"parameters": [
 					{
 						"in": "path",
@@ -943,11 +879,7 @@
 				"tags": [
 					"Authors"
 				],
-				"security": [
-					{
-						"jwt": []
-					}
-				],
+				"security": [],
 				"parameters": [
 					{
 						"in": "path",

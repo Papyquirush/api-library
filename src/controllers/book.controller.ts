@@ -5,7 +5,6 @@ import { BookCollectionDTO } from "../dto/bookCollection.dto";
 
 @Route("books")
 @Tags("Books")
-@Security("jwt")
 export class BookController extends Controller {
   @Get("/")
   public async getAllBooks(): Promise<BookDTO[]> {
