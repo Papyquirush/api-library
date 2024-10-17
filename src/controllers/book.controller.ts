@@ -7,11 +7,13 @@ import { BookCollectionDTO } from "../dto/bookCollection.dto";
 @Tags("Books")
 export class BookController extends Controller {
   @Get("/")
+  @Security('jwt', ['book:read'])
   public async getAllBooks(): Promise<BookDTO[]> {
     return bookService.getAllBooks();
   }
 
   @Get("{id}")
+  @Security('jwt', ['book:read'])
   public async getBookById(@Path() id: number): Promise<BookDTO | null> {
     const book = await bookService.getBookById(id);
 
@@ -24,6 +26,7 @@ export class BookController extends Controller {
   }
 
   @Post("/")
+  @Security('jwt', ['book:write'])
   public async createBook(
     @Body() requestBody: BookDTO
   ): Promise<BookDTO> {
@@ -33,6 +36,7 @@ export class BookController extends Controller {
   
 
   @Patch("{id}")
+  @Security('jwt', ['book:write'])
   public async updateBook(
     @Path() id: number,
     @Body() requestBody: BookDTO
@@ -50,6 +54,7 @@ export class BookController extends Controller {
 
 
   @Delete("{id}")
+  @Security('jwt', ['book:delete'])
   public async deleteBook(@Path() id: number): Promise<void> {
     const book = await bookService.getBookById(id);
 
@@ -62,6 +67,7 @@ export class BookController extends Controller {
   }
 
   @Get('{id}/book-collections')
+  @Security('jwt', ['book:read'])
   public async getBookCollectionsByBookId(@Path() id: number): Promise<BookCollectionDTO[]> {
     const book = await bookService.getBookCollectionsByBook(id);
 

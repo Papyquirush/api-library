@@ -20,13 +20,16 @@ export function expressAuthentication(
         function (err: any, decoded: any) {
           if (err) {
             reject(err);
-          } else {
+          }  else {
             if (scopes !== undefined) {
-              for(let scope of scopes) {
-              if(!decoded.scopes.includes(scope)) {
-                reject(new Error("JWT does not contain required scope."));
+              const userScopes = decoded.scopes;
+
+              for (let scope of scopes) {
+                const [resource, action] = scope.split(":");
+                if (!userScopes[resource]?.includes(action)) {
+                  reject(new Error("JWT does not contain required permission for" + scope));
+                }
               }
-            }
             }
             resolve(decoded);
           }
@@ -35,6 +38,6 @@ export function expressAuthentication(
     });
   } else {
     
-    throw new Error("Only support JWT security name");
+    throw new Error("Only support JWT security");
   }
 }

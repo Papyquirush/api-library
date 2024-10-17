@@ -28,8 +28,7 @@ export class AuthenticationService {
       const token = jwt.sign(
         {
           username: user.username,
-          role: user.username,
-          permissions: AuthenticationService.getPermissions(user.username as 'admin' | 'gerant' | 'utilisateur'),
+          scopes: AuthenticationService.getPermissions(user.username),
         },
         JWT_SECRET,
         { expiresIn: '24h' }
@@ -47,16 +46,32 @@ export class AuthenticationService {
     }
   }
 
-  private static getPermissions(role: 'admin' | 'gerant' | 'utilisateur') {
-    switch (role) {
+  private static getPermissions(username: string): { [key: string]: string[] } {
+    switch (username) {
       case 'admin':
-        return ['read', 'write', 'delete'];
+        return {
+          book: ['read', 'write', 'delete'],
+          author: ['read', 'write', 'delete'],
+          bookCollection: ['read', 'write', 'delete'],
+        };
       case 'gerant':
-        return ['read', 'write', 'delete_bookCollection'];
+        return {
+          book: ['read', 'write'],
+          author: ['read', 'write'],
+          bookCollection: ['read', 'write', 'delete'],
+        };
       case 'utilisateur':
-        return ['read', 'write_book'];
+        return {
+          book: ['read', 'write'],
+          author: ['read'],
+          bookCollection: ['read'],
+        };
       default:
-        return [];
+        return {
+          book: [],
+          author: [],
+          bookCollection: [],
+        };
     }
   }
 
