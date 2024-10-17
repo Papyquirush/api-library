@@ -52,3 +52,32 @@ Permet d'être lancé sans compilation et de relancer dynamiquement l'applicatio
     
 6) Renvoyer la liste des livres de l'auteur sur la route GET /authors/{id}/books
 7) Renvoyer la liste des exemplaires du livre sur la route GET /books/{id}/books-collections
+
+Exercice
+
+    Créer une table utilisateur qui comprendra les logins et mot de passe (en base 64) des utilisateurs
+    Créer une route /auth qui prendra en entrée un login + mot de passe et générera un token JWT simple
+    Mettre à jour tsoa.json pour mettre une possibilité d'ajout du token :
+        Objet "securityDefinition" avec une clef ("jwt" par exemple) et en valeur un objet contenant:
+            type : apiKey
+            in : Savoir si on le met en header, query ou autre...
+            name: Nom du champ du token
+        Ajout dans "routes" du champ "authenticationModule" avec notre middleware sécurité
+    Mise en place d'un middleware qui vérifie la présence d'un token signé correctement sur toutes les routes
+
+Exercice noté
+
+    Créer trois utilisateurs :
+        admin
+        gerant
+        utilisateur
+    Générer des tokens contenant des droits de lecture/ecriture/suppression pour les tables author/book/bookCollection
+    Gérer les droits d'accès suivants :
+        l'administrateur a tout les droits
+        le gérant peut :
+            tout lire
+            créer et modifier sur toutes les tables
+            supprimer uniquement sur la table d'exemplaire des livres "Book Collection"
+        l'utilisateur peut :
+            tout lire
+            créer un nouveau livre si l'auteur existe déjà mais pas de nouveau exemplaire
