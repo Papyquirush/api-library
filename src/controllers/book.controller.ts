@@ -1,7 +1,8 @@
-import { Controller, Get, Post, Delete, Route, Path, Body, Tags, Patch, Security } from "tsoa";
+import { Controller, Get, Post, Delete, Route, Path, Body, Tags, Patch, Security, Request } from "tsoa";
 import { BookDTO } from "../dto/book.dto";
 import { bookService } from "../services/book.service";
 import { BookCollectionDTO } from "../dto/bookCollection.dto";
+import { authorService } from "../services/author.service";
 
 @Route("books")
 @Tags("Books")
@@ -28,10 +29,25 @@ export class BookController extends Controller {
   @Post("/")
   @Security('jwt', ['book:write'])
   public async createBook(
+    @Request() request: any,
     @Body() requestBody: BookDTO
   ): Promise<BookDTO> {
     const { title, publish_year, author, isbn } = requestBody;
-    return bookService.createBook(title,publish_year , isbn, author?.id);
+
+    const username = request.user.username;
+
+    if (username === 'utilisateur') {
+      if (!author || !author.id) {
+        throw new Error("Author must be specified and must exist");
+      }
+
+      const existingAuthor = await authorService.getAuthorById(author.id);
+      if (!existingAuthor) {
+        throw new Error("Author does not exist");
+      }
+    }
+
+    return bookService.createBook(title, publish_year, isbn, author?.id);
   }
   
 

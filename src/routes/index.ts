@@ -489,6 +489,7 @@ export function RegisterRoutes(app: Router) {
 
             async function BookController_createBook(request: ExRequest, response: ExResponse, next: any) {
             const args: Record<string, TsoaRoute.ParameterSchema> = {
+                    request: {"in":"request","name":"request","required":true,"dataType":"object"},
                     requestBody: {"in":"body","name":"requestBody","required":true,"ref":"BookDTO"},
             };
 
